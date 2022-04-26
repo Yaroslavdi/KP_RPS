@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Chemistry</h2>
+    <div th:each="pro : ${products}" class="alert alert-info mt-2">
+        <p th:text="${pro.title}"/>
+
+            <img src="/images/${img.id}"/>
+
+        <a th:href="'/main/product/' + ${pro.id}" class="btn btn-warning">Подробнее</a>
+
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
