@@ -17,7 +17,7 @@ import java.io.ByteArrayInputStream;
 public class ImageController {
     private final ImageRepository imageRepository;
 
-    @GetMapping("/admin/images/{id}")
+    @GetMapping("/images/{id}")
     private ResponseEntity<?> getImageById(@PathVariable Long id) {
         Image image = imageRepository.findById(id).orElse(null);
         return ResponseEntity.ok()
@@ -25,14 +25,5 @@ public class ImageController {
                 .contentType(MediaType.valueOf(image.getContentType()))
                 .contentLength(image.getSize())
                 .body(new InputStreamResource(new ByteArrayInputStream(image.getBytes())));
-    }
-    @GetMapping("/main/images/{id}")
-    private ResponseEntity<?> mainGetImageById(@PathVariable Long id) {
-        Image image1 = imageRepository.findById(id).orElse(null);
-        return ResponseEntity.ok()
-                .header("fileName", image1.getOriginalFileName())
-                .contentType(MediaType.valueOf(image1.getContentType()))
-                .contentLength(image1.getSize())
-                .body(new InputStreamResource(new ByteArrayInputStream(image1.getBytes())));
     }
 }
